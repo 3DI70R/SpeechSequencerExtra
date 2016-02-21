@@ -12,7 +12,7 @@ namespace ThreeDISevenZeroR.SpeechSequencer.Extra
 {
     [XmlElementBinding("YandexNews")]
     [Description("Загружает новости с news.yandex как значение")]
-    public class YandexNewsNode : SequenceNode, IValueNode
+    public class YandexNewsNode : ValueNode
     {
         private static readonly string c_urlTemplate = "https://news.yandex.{0}/{1}.rss";
 
@@ -42,15 +42,7 @@ namespace ThreeDISevenZeroR.SpeechSequencer.Extra
         [Description("Количество новостей")]
         public int NewsCount { get; set; } = 1;
 
-        public string Value
-        {
-            get
-            {
-                return m_newsContent;
-            }
-        }
-
-        public override void InitNewState(IPlaybackContext context)
+        public override string LoadValue(IPlaybackContext context)
         {
             WebRequest request = WebRequest.Create(string.Format(c_urlTemplate, Domain, Category));
             WebResponse response = request.GetResponse();
@@ -64,9 +56,9 @@ namespace ThreeDISevenZeroR.SpeechSequencer.Extra
             {
                 XmlNode node = nodeList[i];
 
-                if(LoadTitle)
+                if (LoadTitle)
                 {
-                    if(builder.Length != 0)
+                    if (builder.Length != 0)
                     {
                         builder.Append(Divider);
                     }
@@ -74,7 +66,7 @@ namespace ThreeDISevenZeroR.SpeechSequencer.Extra
                     builder.Append(node.SelectSingleNode("title").InnerText);
                 }
 
-                if(LoadDescription)
+                if (LoadDescription)
                 {
                     if (builder.Length != 0)
                     {
@@ -85,7 +77,7 @@ namespace ThreeDISevenZeroR.SpeechSequencer.Extra
                 }
             }
 
-            m_newsContent = builder.ToString();
+            return builder.ToString();
         }
     }
 }
