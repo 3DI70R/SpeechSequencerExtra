@@ -16,11 +16,9 @@ namespace ThreeDISevenZeroR.SpeechSequencer.Extra
     {
         private static readonly string c_urlTemplate = "https://news.yandex.{0}/{1}.rss";
 
-        private string m_newsContent;
-
         [XmlAttributeBinding]
-        [Description("Разделитель между заголовком и ")]
-        public string Divider { get; set; } = " ";
+        [Description("Разделитель")]
+        public string Divider { get; set; } = ", ";
 
         [XmlAttributeBinding]
         [Description("Загружать ли заголовок")]

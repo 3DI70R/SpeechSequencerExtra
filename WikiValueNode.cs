@@ -77,4 +77,3 @@ namespace ThreeDISevenZeroR.SpeechSequencer.Core
 		}
 	}
 }
-
