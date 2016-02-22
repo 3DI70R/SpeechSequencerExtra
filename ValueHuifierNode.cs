@@ -4,8 +4,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ThreeDISevenZeroR.SpeechSequencer.Core;
 
-namespace ThreeDISevenZeroR.SpeechSequencer.Core
+namespace ThreeDISevenZeroR.SpeechSequencer.Extra
 {
     [XmlElementBinding("Huify")]
     [Description("Набор настоящего джентельмена-хуентельмена")]

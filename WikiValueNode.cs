@@ -2,8 +2,9 @@ using System;
 using System.Net;
 using System.ComponentModel;
 using System.Xml;
+using ThreeDISevenZeroR.SpeechSequencer.Core;
 
-namespace ThreeDISevenZeroR.SpeechSequencer.Core
+namespace ThreeDISevenZeroR.SpeechSequencer.Extra
 {
 	[XmlElementBinding("Wiki")]
 	[Description("Загружает краткое описание значения из википедии")]
