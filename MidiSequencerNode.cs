@@ -135,7 +135,7 @@ namespace ThreeDISevenZeroR.SpeechSequencer.Extra
                         if (e.CommandCode == MidiCommandCode.NoteOn)
                         {
                             NoteOnEvent noteEvent = (NoteOnEvent)e;
-                            PlayNoteAtChannel(noteEvent.Channel, noteEvent.NoteNumber);
+                            PlayNoteAtChannel(noteEvent.Channel, noteEvent.NoteNumber, noteEvent.Velocity);
                         }
                         else if (e.CommandCode == MidiCommandCode.NoteOff)
                         {
@@ -213,7 +213,7 @@ namespace ThreeDISevenZeroR.SpeechSequencer.Extra
                 m_sounds.Add(p.Channel, sound);
             }
         }
-        private void PlayNoteAtChannel(int channel, int note)
+        private void PlayNoteAtChannel(int channel, int note, int volume)
         {
             ChannelSound sound;
 
@@ -221,9 +221,10 @@ namespace ThreeDISevenZeroR.SpeechSequencer.Extra
             {
                 float noteFrequency = s_noteFrequencies[sound.parameters.BaseNote] / s_noteFrequencies[note];
                 ISampleProvider sample = sound.sampleFactory().ResampleIfNeeded(WaveFormat);
+                int newSampleRate = (int)(sample.WaveFormat.SampleRate * noteFrequency);
 
-                WdlResamplingSampleProvider resampler = new WdlResamplingSampleProvider(sample, (int)(sample.WaveFormat.SampleRate * noteFrequency));
-                PlaySound(resampler, channel);
+                WdlResamplingSampleProvider resampler = new WdlResamplingSampleProvider(sample, newSampleRate);
+                PlaySound(resampler, channel, volume / 127.0f);
             }
         }
         private void StopNoteAtChannel(int channel)
@@ -237,7 +238,6 @@ namespace ThreeDISevenZeroR.SpeechSequencer.Extra
                     FadeOut(channel);
                 }
             }
-
         }
     }
 }
