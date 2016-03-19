@@ -79,7 +79,7 @@ namespace ThreeDISevenZeroR.SpeechSequencer.Extra
 
         private static float[] s_noteFrequencies =
         {
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            8.175f, 8.660f, 9.175f, 9.725f, 10.30f, 10.91f, 11.56f, 12.25f, 12.98f, 13.75f, 14.57f, 15.43f,
             16.35f, 17.32f, 18.35f, 19.45f, 20.60f, 21.83f, 23.12f, 24.50f, 25.96f, 27.50f, 29.14f, 30.87f,
             32.70f, 34.65f, 36.71f, 38.89f, 41.20f, 43.65f, 46.25f, 49.00f, 51.91f, 55.00f, 58.27f, 61.74f,
             65.41f, 69.30f, 73.42f, 77.78f, 82.41f, 87.31f, 92.50f, 98.00f, 103.8f, 110.0f, 116.5f, 123.5f,
@@ -172,7 +172,7 @@ namespace ThreeDISevenZeroR.SpeechSequencer.Extra
 
         private void InitMidi()
         {
-            m_midiFile = new MidiFile(MidiPath);
+            m_midiFile = new MidiFile(MidiPath, false);
             m_sounds = new Dictionary<int, ChannelSound>();
             m_tracks = new List<TrackState>();
 
@@ -220,6 +220,7 @@ namespace ThreeDISevenZeroR.SpeechSequencer.Extra
             if (m_sounds.TryGetValue(channel, out sound))
             {
                 float noteFrequency = s_noteFrequencies[sound.parameters.BaseNote] / s_noteFrequencies[note];
+
                 ISampleProvider sample = sound.sampleFactory().ResampleIfNeeded(WaveFormat);
                 int newSampleRate = (int)(sample.WaveFormat.SampleRate * noteFrequency);
 
