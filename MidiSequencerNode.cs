@@ -164,7 +164,7 @@ namespace ThreeDISevenZeroR.SpeechSequencer.Extra
             }
         }
 
-        public override void InitNewState(IPlaybackContext context)
+        public override void InitNewState(Context context)
         {
             base.InitNewState(context);
             InitMidi();

@@ -19,7 +19,7 @@ namespace ThreeDISevenZeroR.SpeechSequencer.Extra
         [Description("Валюта")]
         public string Currency { get; set; } = "USD";
 
-        public override string LoadValue(IPlaybackContext context)
+        public override string LoadValue(Context context)
         {
             string exchangeRates = LoadExchangeRates();
             string[] parts = exchangeRates.Split('.');

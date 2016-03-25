@@ -40,7 +40,7 @@ namespace ThreeDISevenZeroR.SpeechSequencer.Extra
         [Description("Количество новостей")]
         public int NewsCount { get; set; } = 1;
 
-        public override string LoadValue(IPlaybackContext context)
+        public override string LoadValue(Context context)
         {
             WebRequest request = WebRequest.Create(string.Format(c_urlTemplate, Domain, Category));
             WebResponse response = request.GetResponse();

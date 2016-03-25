@@ -35,7 +35,7 @@ namespace ThreeDISevenZeroR.SpeechSequencer.Extra
             return new Mp3FileReader(memoryStream).ToSampleProvider();
         }
 
-        protected override ISampleProvider CreateProvider(string value, IPlaybackContext context)
+        protected override ISampleProvider CreateProvider(string value, Context context)
         {
             WebRequest request = WebRequest.Create(string.Format(c_apiSearch, ApiKey, value));
             WebResponse response = request.GetResponse();
