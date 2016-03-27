@@ -18,7 +18,7 @@ namespace ThreeDISevenZeroR.SpeechSequencer.Extra
 
         [XmlAttributeBinding]
         [Description("Разделитель")]
-        public string Divider { get; set; } = ", ";
+        public string Divider { get; set; } = "..., ";
 
         [XmlAttributeBinding]
         [Description("Загружать ли заголовок")]
@@ -40,7 +40,7 @@ namespace ThreeDISevenZeroR.SpeechSequencer.Extra
         [Description("Количество новостей")]
         public int NewsCount { get; set; } = 1;
 
-        public override string LoadValue(Context context)
+        protected override string InitValue(Context context)
         {
             WebRequest request = WebRequest.Create(string.Format(c_urlTemplate, Domain, Category));
             WebResponse response = request.GetResponse();

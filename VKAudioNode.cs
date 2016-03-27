@@ -18,6 +18,8 @@ namespace ThreeDISevenZeroR.SpeechSequencer.Extra
     {
         private const string c_apiSearch = "https://api.vk.com/method/audio.search.xml?access_token={0}&q={1}&count=1";
 
+        // Для получения бессрочного ключа можно указать client_id и пройти по ссылке
+        // https://oauth.vk.com/authorize?client_id=*&scope=offline,audio&display=page&response_type=token&redirect_uri=https://oauth.vk.com/blank.html
         [ConstantBinding("VKApiKey")]
         [XmlAttributeBinding]
         [Description("Ключ доступа для API ВКонтакте")]

@@ -164,9 +164,9 @@ namespace ThreeDISevenZeroR.SpeechSequencer.Extra
             }
         }
 
-        public override void InitNewState(Context context)
+        protected override void OnInitNewState(Context context)
         {
-            base.InitNewState(context);
+            base.OnInitNewState(context);
             InitMidi();
         }
 
@@ -197,7 +197,7 @@ namespace ThreeDISevenZeroR.SpeechSequencer.Extra
                     sound.sampleFactory = () =>
                     {
                         IAudioNode audio = origFactory();
-                        audio.InitNewState(Context);
+                        audio.InitNewState(LocalContext);
 
                         return audio;
                     };
@@ -205,12 +205,12 @@ namespace ThreeDISevenZeroR.SpeechSequencer.Extra
                 else
                 {
                     IAudioNode node = origFactory();
-                    node.InitNewState(Context);
+                    node.InitNewState(LocalContext);
 
                     sound.sampleFactory = node.CreateCachedFactory();
                 }
 
-                m_sounds.Add(p.Channel, sound);
+                m_sounds[p.Channel] = sound;
             }
         }
         private void PlayNoteAtChannel(int channel, int note, int volume)
